@@ -3,5 +3,6 @@ Phase_1/P1_Dataset/*
 Phase_2/P2_Dataset/*
 Phase_2/P2_Bonus_dataset
 Phase_2/src/todo.txt
-Phase_2/src/temp.py
+Phase_2/inverted_index/*
 Trim_Data/data/*
+code_testing/*
