@@ -1,1 +1,5 @@
 .DS_Store
+Phase_1/P1_Dataset/*
+Phase_2/P2_Dataset/*
+Phase_2/P2_Bonus_dataset
+Trim_Data/data/*
