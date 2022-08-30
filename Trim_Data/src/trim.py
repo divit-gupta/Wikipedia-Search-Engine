@@ -1,9 +1,13 @@
 import sys
 import os
+from datetime import datetime
 
 bytes_in_GB = 1073741824
 
 def main():
+
+    start_time = datetime.utcnow()
+
     if(len(sys.argv) != 3):
         print("ERROR: Expected 2 command line arguments, path_to_wiki_dump and required_trimmed_dump_size")
         print("SYNTAX: python trim.py <path_to_dump> <trimmed_size_in_GB>")
@@ -18,7 +22,7 @@ def main():
     trim_size_GB = sys.argv[2]
     trim_size_B = round(float(trim_size_GB) * bytes_in_GB)
 
-    trim_path = "../data/dump" +( trim_size_GB.replace('.', '_')) + "GB.xml"
+    trim_path = "data/dump" +( trim_size_GB.replace('.', '_')) + "GB.xml"
     abs_trim_path = os.path.abspath(trim_path)
 
     dump_fp = open(abs_dump_path, "r")
@@ -38,7 +42,12 @@ def main():
     trim_fp.write(end)
 
     dump_fp.close()
-    trim_fp.close()    
+    trim_fp.close()
+
+    end_time = datetime.utcnow()
+    trimming_time = (end_time - start_time).total_seconds()
+    print("Trimming data time:", trimming_time, "seconds")
+    return
 
 if __name__ == "__main__":
     main()
