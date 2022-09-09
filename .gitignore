@@ -6,6 +6,9 @@ Phase_2/src/todo.txt
 Phase_2/src/__pycache__
 Phase_2/inverted_index/*
 Phase_2/inv_data/*
+Phase_2/inv_data/inverted_index2/*
+Phase_2/inv_data/inverted_index7gb/*
+Phase_2/inv_data/inverted_index90/*
 Phase_2/out/*
 Trim_Data/data/*
 code_testing/*
