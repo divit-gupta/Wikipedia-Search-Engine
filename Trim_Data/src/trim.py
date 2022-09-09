@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 
 bytes_in_GB = 1073741824
+mlf = 2 # memory load factor, keep it large to put less memory pressure on the system
 
 def main():
 
@@ -27,7 +28,6 @@ def main():
     # cwd = os.getcwd()
     # abs_trim_path = os.path.join(cwd, trim_path)
     abs_trim_path = os.path.abspath(trim_path)
-    print(abs_trim_path)
     if(os.path.isdir(abs_trim_path) is False):
         os.mkdir(abs_trim_path)
 
@@ -39,16 +39,17 @@ def main():
     trim_fp = open(abs_trim_dump_path, "w")
 
     while(trim_size_B > 0):
-        if(trim_size_B >= bytes_in_GB):
-            data = dump_fp.read(int(bytes_in_GB))
+        if(trim_size_B >= bytes_in_GB / mlf):
+            data = dump_fp.read(int(bytes_in_GB / mlf))
             trim_fp.write(data)
-            trim_size_B -= bytes_in_GB
+            trim_size_B -= bytes_in_GB / mlf
         else:
             data = dump_fp.read(int(trim_size_B))
             trim_fp.write(data)
             trim_size_B = 0
 
-    end = "\n  </page>\n</mediawiki>"
+    end = "\n      </text>\n    </revision>\n  </page>\n</mediawiki>"
+    # end = "\n  </page>\n</mediawiki>"
     trim_fp.write(end)
 
     dump_fp.close()
